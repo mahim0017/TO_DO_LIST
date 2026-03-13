@@ -1,4 +1,6 @@
-let task = [];
+let task =JSON.parse(localStorage.getItem("task")) || [];
+
+let setTask= () => localStorage.setItem("task", JSON.stringify(task));
 
 const inputEl = document.querySelector("#inputEl");
 const addBtn = document.querySelector("#addBtn");
@@ -19,7 +21,7 @@ function addTask() {
   if (value) {
 
     task.push(value);
-
+    setTask()
     renderTask(task);
 
     inputEl.value = "";
@@ -74,7 +76,7 @@ function renderTask(arr) {
       btn.addEventListener("click", () => {
 
         task.splice(task.indexOf(item), 1);
-
+        setTask()
         reCallRender();
 
       });
